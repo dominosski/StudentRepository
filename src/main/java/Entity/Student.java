@@ -57,6 +57,14 @@ public class Student {
         this.indexNumber = indexNumber;
     }
 
+    public StudentDetails getStudentDetails() {
+        return studentDetails;
+    }
+
+    public void setStudentDetails(StudentDetails studentDetails) {
+        this.studentDetails = studentDetails;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
