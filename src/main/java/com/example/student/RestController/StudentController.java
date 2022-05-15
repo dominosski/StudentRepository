@@ -1,30 +1,30 @@
-package RestController;
+package com.example.student.RestController;
 
-import Entity.Student;
-import Service.StudentService;
+import com.example.student.Entity.Student;
+import com.example.student.Service.StudentServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
 public class StudentController {
-    private StudentService studentService;
+    private StudentServiceImplementation studentService;
 
     @Autowired
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentServiceImplementation studentService) {
         this.studentService = studentService;
     }
 
     @GetMapping("/student")
-    public List<Student> findAllStudents(){
+    public Iterable<Student> findAllStudents(){
         return studentService.findAll();
     }
 
     @GetMapping("/student/{id}")
-    public Student getStudentById(@PathVariable long id){
-        Student student = studentService.findById(id);
+    public Optional<Student> getStudentById(@PathVariable long id){
+        Optional<Student> student = studentService.findById(id);
 
         if(student == null){
             throw new RuntimeException("Student with id: " + id + " was not found");
@@ -51,7 +51,7 @@ public class StudentController {
 
     @DeleteMapping("/student/{id}")
     public String deleteStudent(@PathVariable long id){
-        Student student = studentService.findById(id);
+        Optional<Student> student = studentService.findById(id);
 
         if(student == null){
             throw new RuntimeException("Student with id: " + id + " was not found");

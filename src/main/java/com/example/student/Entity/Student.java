@@ -1,4 +1,4 @@
-package Entity;
+package com.example.student.Entity;
 
 import javax.persistence.*;
 
@@ -12,9 +12,9 @@ public class Student {
     private String lastName;
     private String indexNumber;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "studentDetails_id", referencedColumnName = "id")
-    private StudentDetails studentDetails;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "studentDetails_id", referencedColumnName = "id")
+//    private StudentDetails studentDetails;
 
     public Student() {
     }
@@ -57,13 +57,13 @@ public class Student {
         this.indexNumber = indexNumber;
     }
 
-    public StudentDetails getStudentDetails() {
-        return studentDetails;
-    }
-
-    public void setStudentDetails(StudentDetails studentDetails) {
-        this.studentDetails = studentDetails;
-    }
+//    public StudentDetails getStudentDetails() {
+//        return studentDetails;
+//    }
+//
+//    public void setStudentDetails(StudentDetails studentDetails) {
+//        this.studentDetails = studentDetails;
+//    }
 
     @Override
     public String toString() {
