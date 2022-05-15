@@ -12,10 +12,6 @@ public class Student {
     private String lastName;
     private String indexNumber;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "studentDetails_id", referencedColumnName = "id")
-//    private StudentDetails studentDetails;
-
     public Student() {
     }
 
@@ -56,14 +52,6 @@ public class Student {
     public void setIndexNumber(String indexNumber) {
         this.indexNumber = indexNumber;
     }
-
-//    public StudentDetails getStudentDetails() {
-//        return studentDetails;
-//    }
-//
-//    public void setStudentDetails(StudentDetails studentDetails) {
-//        this.studentDetails = studentDetails;
-//    }
 
     @Override
     public String toString() {
