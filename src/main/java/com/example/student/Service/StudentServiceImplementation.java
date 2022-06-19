@@ -37,7 +37,7 @@ public class StudentServiceImplementation{
     @EventListener(ApplicationReadyEvent.class)
     public void populateDBWithData(){
         System.out.println("Testing db population");
-        Student student = new Student("Dominik", "Kijowski", "96112");
+        Student student = new Student("TestName", "TestLastName", "96166");
 
         save(student);
     }
