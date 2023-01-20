@@ -20,7 +20,7 @@ public class ProfessorController {
     }
 
     @GetMapping("/professor/{id}")
-    public Optional<Professor> findProfessorById(@PathVariable long id) throws NotFoundException {
+    public Professor findProfessorById(@PathVariable long id) throws NotFoundException {
         return professorServiceImplementation.findById(id);
     }
 
@@ -37,7 +37,7 @@ public class ProfessorController {
 
     @DeleteMapping("/professor/{id}")
     public void deleteProfessor(@PathVariable long id) throws NotFoundException {
-        professorServiceImplementation.deleteById(id);
+        professorServiceImplementation.delete(id);
     }
 
 }

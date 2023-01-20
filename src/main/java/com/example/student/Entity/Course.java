@@ -19,8 +19,7 @@ public class Course {
     private long id;
     private String courseName;
     @ManyToOne
-    private Professor professorName;
+    private Professor professor;
     @ManyToMany(mappedBy = "courseList")
     private List<Student> studentList;
-
 }

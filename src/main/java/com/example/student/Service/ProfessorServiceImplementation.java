@@ -15,32 +15,23 @@ public class ProfessorServiceImplementation {
     @Autowired
     private ProfessorRepository professorRepository;
 
-    public boolean checkIfUserExists(long id) throws NotFoundException {
-        Optional<Professor> course = professorRepository.findById(id);
-        if(!course.isPresent()){
-            throw new NotFoundException("Professor with given id was not found");
-        }
-        return true;
-    }
 
     public Iterable<Professor> findAll() {
         return professorRepository.findAll();
     }
 
-    public Optional<Professor> findById(long id) throws NotFoundException {
-        checkIfUserExists(id);
-        return professorRepository.findById(id);
+    public Professor findById(long id) throws NotFoundException {
+        return professorRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Professor with given id does not exist"));
     }
     public Professor save(Professor course){
         return professorRepository.save(course);
     }
-    public Professor update(Professor course) throws NotFoundException {
-        checkIfUserExists(course.getId());
-        return professorRepository.save(course);
+    public Professor update(Professor professor) throws NotFoundException {
+        return professorRepository.save(professor);
     }
 
-    public void deleteById(long id) throws NotFoundException {
-        checkIfUserExists(id);
-        professorRepository.deleteById(id);
+    public void delete(long id) throws NotFoundException {
+        professorRepository.delete(findById(id));
     }
 }

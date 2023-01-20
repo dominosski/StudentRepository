@@ -25,7 +25,7 @@ public class StudentController {
     }
 
     @GetMapping("/student/{id}")
-    public Optional<Student> getStudentById(@PathVariable long id) throws NotFoundException {
+    public Student getStudentById(@PathVariable long id) throws NotFoundException {
         return studentService.findById(id);
     }
 
@@ -42,6 +42,6 @@ public class StudentController {
 
     @DeleteMapping("/student/{id}")
     public void deleteStudent(@PathVariable long id) throws NotFoundException {
-        studentService.deleteById(id);
+        studentService.delete(id);
     }
 }
