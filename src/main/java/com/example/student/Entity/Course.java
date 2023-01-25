@@ -34,4 +34,13 @@ public class Course {
         this.studentList.remove(student);
         student.getCourseList().remove(this);
     }
+
+    public void addProfessor(Professor professor){
+        this.setProfessor(professor);
+        professor.getCourseList().add(this);
+    }
+    public void removeProfessor(Professor professor){
+        this.setProfessor(null);
+        professor.getCourseList().remove(this);
+    }
 }

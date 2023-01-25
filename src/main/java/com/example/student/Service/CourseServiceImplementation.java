@@ -56,7 +56,14 @@ public class CourseServiceImplementation {
     public Course addProfessorToCourse(Long id, Long professorId) throws NotFoundException {
         Professor professor = professorServiceImplementation.findById(professorId);
         Course course = findById(id);
-        course.setProfessor(professor);
+        course.addProfessor(professor);
+        return courseRepository.save(course);
+    }
+
+    public Course removeProfessorFromCourse(Long courseId, Long professorId) throws NotFoundException {
+        Professor professor = professorServiceImplementation.findById(professorId);
+        Course course = findById(courseId);
+        course.removeProfessor(professor);
         return courseRepository.save(course);
     }
 }

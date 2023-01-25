@@ -54,4 +54,9 @@ public class CourseController {
     public Course removeStudentFromCourse(@PathVariable Long courseId, @PathVariable Long studentId) throws NotFoundException {
         return courseServiceImplementation.removeStudentFromCourse(courseId, studentId);
     }
+
+    @DeleteMapping("/{courseId}/removeProfessor/{professorId}")
+    public Course removeProfessorFromCourse(@PathVariable Long courseId, @PathVariable Long professorId) throws NotFoundException{
+        return courseServiceImplementation.removeProfessorFromCourse(courseId, professorId);
+    }
 }

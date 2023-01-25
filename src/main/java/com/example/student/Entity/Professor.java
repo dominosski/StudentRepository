@@ -1,9 +1,8 @@
 package com.example.student.Entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,6 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@EqualsAndHashCode(exclude = "courseList")
 public class Professor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -22,5 +22,6 @@ public class Professor {
     private String lastName;
     private String degree;
     @OneToMany(mappedBy = "professor")
+    @JsonBackReference
     private Set<Course> courseList;
 }
