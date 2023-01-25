@@ -17,7 +17,7 @@ public class StudentServiceImplementation{
         return studentRepository.findAll();
     }
 
-    public Student findById(long id) throws NotFoundException {
+    public Student findById(Long id) throws NotFoundException {
         return studentRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Student with id: " + id + " was not found"));
     }
@@ -26,7 +26,7 @@ public class StudentServiceImplementation{
         return studentRepository.save(student);
     }
 
-    public void delete(long id) throws NotFoundException {
+    public void delete(Long id) throws NotFoundException {
         studentRepository.delete(findById(id));
     }
 }

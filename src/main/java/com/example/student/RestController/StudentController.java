@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
 public class StudentController {
     private StudentServiceImplementation studentService;
 
@@ -31,7 +30,7 @@ public class StudentController {
 
     @PostMapping("/student")
     public Student addStudent(@RequestBody Student student){
-        student.setId(0);
+        student.setId(0L);
         return studentService.save(student);
     }
 

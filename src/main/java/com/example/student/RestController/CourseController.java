@@ -27,7 +27,7 @@ public class CourseController {
 
     @PostMapping
     public Course createCourse(@RequestBody Course course) {
-        course.setId(0);
+        course.setId(0L);
         return courseServiceImplementation.save(course);
     }
 
@@ -36,17 +36,22 @@ public class CourseController {
         return courseServiceImplementation.update(course);
     }
     @DeleteMapping("/{id}")
-    public void deleteCourse(@PathVariable long id) throws NotFoundException {
+    public void deleteCourse(@PathVariable Long id) throws NotFoundException {
         courseServiceImplementation.deleteById(id);
     }
 
-    @PostMapping("/{id}/addStudent/{studentId}")
-    public Course addStudentToCourse(@PathVariable long courseId, @RequestBody long studentId) throws NotFoundException {
+    @PutMapping("/{courseId}/addStudent/{studentId}")
+    public Course addStudentToCourse(@PathVariable Long courseId, @PathVariable Long studentId) throws NotFoundException {
         return courseServiceImplementation.addStudentToCourse(courseId, studentId);
     }
 
-    @PostMapping("/{id}/addProfessor/{professorId}")
-    public Course addProfessorToCourse(@PathVariable long courseId, @PathVariable long professorId) throws NotFoundException {
+    @PostMapping("/{courseId}/addProfessor/{professorId}")
+    public Course addProfessorToCourse(@PathVariable Long courseId, @PathVariable Long professorId) throws NotFoundException {
         return courseServiceImplementation.addProfessorToCourse(courseId, professorId);
+    }
+
+    @DeleteMapping("/{courseId}/removeStudent/{studentId}")
+    public Course removeStudentFromCourse(@PathVariable Long courseId, @PathVariable Long studentId) throws NotFoundException {
+        return courseServiceImplementation.removeStudentFromCourse(courseId, studentId);
     }
 }

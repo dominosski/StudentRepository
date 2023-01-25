@@ -26,7 +26,7 @@ public class ProfessorController {
 
     @PostMapping("/professor")
     public Professor addProfessor(@RequestBody Professor professor){
-        professor.setId(0);
+        professor.setId(0L);
         return professorServiceImplementation.save(professor);
     }
 

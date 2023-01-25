@@ -20,7 +20,7 @@ public class ProfessorServiceImplementation {
         return professorRepository.findAll();
     }
 
-    public Professor findById(long id) throws NotFoundException {
+    public Professor findById(Long id) throws NotFoundException {
         return professorRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Professor with given id does not exist"));
     }
@@ -31,7 +31,7 @@ public class ProfessorServiceImplementation {
         return professorRepository.save(professor);
     }
 
-    public void delete(long id) throws NotFoundException {
+    public void delete(Long id) throws NotFoundException {
         professorRepository.delete(findById(id));
     }
 }
