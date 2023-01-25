@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -23,5 +24,5 @@ public class Professor {
     private String degree;
     @OneToMany(mappedBy = "professor")
     @JsonBackReference
-    private Set<Course> courseList;
+    private Set<Course> courseList = new HashSet<>();
 }

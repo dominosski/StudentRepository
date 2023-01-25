@@ -21,6 +21,7 @@ public class Course {
     private Long id;
     private String courseName;
     @ManyToOne
+    @JoinColumn(name = "professor_id")
     private Professor professor;
     @ManyToMany(mappedBy = "courseList", cascade = CascadeType.PERSIST)
     @JsonBackReference
