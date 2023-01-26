@@ -29,17 +29,6 @@ public class Student {
             joinColumns = {@JoinColumn(name = "student_id")},
             inverseJoinColumns = {@JoinColumn(name = "course_id")}
     )
-    @JsonManagedReference
+    @JsonBackReference
     private Set<Course> courseList = new HashSet<>();
-
-    public void addCourse(Course course){
-        this.courseList.add(course);
-        course.getStudentList().add(this);
-    }
-    public void removeCourse(Course course){
-        this.courseList.remove(course);
-        course.getStudentList().remove(this);
-    }
-
-
 }

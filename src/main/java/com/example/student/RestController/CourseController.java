@@ -8,7 +8,9 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/course")
@@ -58,5 +60,10 @@ public class CourseController {
     @DeleteMapping("/{courseId}/removeProfessor/{professorId}")
     public Course removeProfessorFromCourse(@PathVariable Long courseId, @PathVariable Long professorId) throws NotFoundException{
         return courseServiceImplementation.removeProfessorFromCourse(courseId, professorId);
+    }
+
+    @GetMapping("/{courseId}/getStudents")
+    public Set<Student> getStudentsFromCourse(@PathVariable Long courseId) throws NotFoundException {
+        return courseServiceImplementation.getStudentsFromCourse(courseId);
     }
 }

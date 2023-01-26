@@ -13,8 +13,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EqualsAndHashCode(exclude = "studentList")
-@ToString(exclude = "studentList")
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +22,7 @@ public class Course {
     @JoinColumn(name = "professor_id")
     private Professor professor;
     @ManyToMany(mappedBy = "courseList", cascade = CascadeType.PERSIST)
-    @JsonBackReference
+    @JsonManagedReference
     private Set<Student> studentList = new HashSet<>();
 
     public void addStudent(Student student){

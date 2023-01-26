@@ -66,4 +66,8 @@ public class CourseServiceImplementation {
         course.removeProfessor(professor);
         return courseRepository.save(course);
     }
+
+    public Set<Student> getStudentsFromCourse(Long courseId) throws NotFoundException {
+        return findById(courseId).getStudentList();
+    }
 }
