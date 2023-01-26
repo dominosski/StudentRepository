@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
 public class StudentController {
     private StudentServiceImplementation studentService;
 
@@ -25,13 +24,13 @@ public class StudentController {
     }
 
     @GetMapping("/student/{id}")
-    public Optional<Student> getStudentById(@PathVariable long id) throws NotFoundException {
+    public Student getStudentById(@PathVariable long id) throws NotFoundException {
         return studentService.findById(id);
     }
 
     @PostMapping("/student")
     public Student addStudent(@RequestBody Student student){
-        student.setId(0);
+        student.setId(0L);
         return studentService.save(student);
     }
 
@@ -42,6 +41,6 @@ public class StudentController {
 
     @DeleteMapping("/student/{id}")
     public void deleteStudent(@PathVariable long id) throws NotFoundException {
-        studentService.deleteById(id);
+        studentService.delete(id);
     }
 }
