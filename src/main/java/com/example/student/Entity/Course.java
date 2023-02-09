@@ -1,6 +1,5 @@
 package com.example.student.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -18,28 +17,16 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String courseName;
-    @ManyToOne
-    @JoinColumn(name = "professor_id")
-    private Professor professor;
     @ManyToMany(mappedBy = "courseList", cascade = CascadeType.PERSIST)
     @JsonManagedReference
-    private Set<Student> studentList = new HashSet<>();
+    private Set<User> userList = new HashSet<>();
 
-    public void addStudent(Student student){
-        this.studentList.add(student);
-        student.getCourseList().add(this);
+    public void addUser(User user) {
+        this.userList.add(user);
+        user.getCourseList().add(this);
     }
-    public void removeStudent(Student student){
-        this.studentList.remove(student);
-        student.getCourseList().remove(this);
-    }
-
-    public void addProfessor(Professor professor){
-        this.setProfessor(professor);
-        professor.getCourseList().add(this);
-    }
-    public void removeProfessor(Professor professor){
-        this.setProfessor(null);
-        professor.getCourseList().remove(this);
+    public void removeUser(User user){
+        this.userList.remove(user);
+        user.getCourseList().remove(this);
     }
 }

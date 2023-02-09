@@ -1,15 +1,12 @@
 package com.example.student.RestController;
 
 import com.example.student.Entity.Course;
-import com.example.student.Entity.Professor;
-import com.example.student.Entity.Student;
+import com.example.student.Entity.User;
 import com.example.student.Service.CourseServiceImplementation;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -42,28 +39,13 @@ public class CourseController {
         courseServiceImplementation.deleteById(id);
     }
 
-    @PutMapping("/{courseId}/addStudent/{studentId}")
-    public Course addStudentToCourse(@PathVariable Long courseId, @PathVariable Long studentId) throws NotFoundException {
-        return courseServiceImplementation.addStudentToCourse(courseId, studentId);
+    @PutMapping("/{courseId}/addUser/{userId}")
+    public Course addUserToCourse(@PathVariable Long courseId, @PathVariable Long userId) throws NotFoundException {
+        return courseServiceImplementation.addUserToCourse(courseId, userId);
     }
 
-    @PostMapping("/{courseId}/addProfessor/{professorId}")
-    public Course addProfessorToCourse(@PathVariable Long courseId, @PathVariable Long professorId) throws NotFoundException {
-        return courseServiceImplementation.addProfessorToCourse(courseId, professorId);
-    }
-
-    @DeleteMapping("/{courseId}/removeStudent/{studentId}")
-    public Course removeStudentFromCourse(@PathVariable Long courseId, @PathVariable Long studentId) throws NotFoundException {
-        return courseServiceImplementation.removeStudentFromCourse(courseId, studentId);
-    }
-
-    @DeleteMapping("/{courseId}/removeProfessor/{professorId}")
-    public Course removeProfessorFromCourse(@PathVariable Long courseId, @PathVariable Long professorId) throws NotFoundException{
-        return courseServiceImplementation.removeProfessorFromCourse(courseId, professorId);
-    }
-
-    @GetMapping("/{courseId}/getStudents")
-    public Set<Student> getStudentsFromCourse(@PathVariable Long courseId) throws NotFoundException {
-        return courseServiceImplementation.getStudentsFromCourse(courseId);
+    @DeleteMapping("/{courseId}/removeUser/{userId}")
+    public Course removeUserFromCourse(@PathVariable Long courseId, @PathVariable Long userId) throws NotFoundException {
+        return courseServiceImplementation.removeUserFromCourse(courseId, userId);
     }
 }

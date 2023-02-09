@@ -2,13 +2,10 @@ package com.example.student.Service;
 
 import com.example.student.DAO.CourseRepository;
 import com.example.student.Entity.Course;
-import com.example.student.Entity.Professor;
-import com.example.student.Entity.Student;
+import com.example.student.Entity.User;
 import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.*;
 
@@ -16,8 +13,7 @@ import java.util.*;
 @AllArgsConstructor
 public class CourseServiceImplementation {
     private final CourseRepository courseRepository;
-    private final StudentServiceImplementation studentServiceImplementation;
-    private final ProfessorServiceImplementation professorServiceImplementation;
+    private final UserServiceImplementation userServiceImplementation;
 
     public Iterable<Course> findAll() {
         return courseRepository.findAll();
@@ -40,34 +36,18 @@ public class CourseServiceImplementation {
         courseRepository.deleteById(id);
     }
 
-    public Course addStudentToCourse(Long courseId, Long studentId) throws NotFoundException {
-        Student student = studentServiceImplementation.findById(studentId);
+    public Course addUserToCourse(Long courseId, Long userId) throws NotFoundException {
+        User user = userServiceImplementation.findById(userId);
         Course course = findById(courseId);
-        course.addStudent(student);
-        return courseRepository.save(course);
-    }
-    public Course removeStudentFromCourse(Long courseId, Long studentId) throws NotFoundException {
-        Student student = studentServiceImplementation.findById(studentId);
-        Course course = findById(courseId);
-        course.removeStudent(student);
+        course.addUser(user);
         return courseRepository.save(course);
     }
 
-    public Course addProfessorToCourse(Long id, Long professorId) throws NotFoundException {
-        Professor professor = professorServiceImplementation.findById(professorId);
-        Course course = findById(id);
-        course.addProfessor(professor);
-        return courseRepository.save(course);
-    }
-
-    public Course removeProfessorFromCourse(Long courseId, Long professorId) throws NotFoundException {
-        Professor professor = professorServiceImplementation.findById(professorId);
+    public Course removeUserFromCourse(Long courseId, Long userId) throws NotFoundException {
+        User user = userServiceImplementation.findById(userId);
         Course course = findById(courseId);
-        course.removeProfessor(professor);
+        course.removeUser(user);
         return courseRepository.save(course);
     }
 
-    public Set<Student> getStudentsFromCourse(Long courseId) throws NotFoundException {
-        return findById(courseId).getStudentList();
-    }
 }
