@@ -1,5 +1,7 @@
 package com.example.student.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -12,13 +14,15 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@EqualsAndHashCode(exclude = {"userList"})
+@ToString(exclude = {"userList"})
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String courseName;
     @ManyToMany(mappedBy = "courseList", cascade = CascadeType.PERSIST)
-    @JsonManagedReference
+    @JsonIgnore
     private Set<User> userList = new HashSet<>();
 
     public void addUser(User user) {

@@ -37,4 +37,9 @@ public class UserController {
     public void deleteUser(@PathVariable long id) throws NotFoundException {
         userService.delete(id);
     }
+
+    @PutMapping("/user/{userId}/addRole/{roleId}")
+    public User addRoleToUser(@PathVariable Long userId, @PathVariable Long roleId) throws NotFoundException {
+        return userService.addRoleToUser(userId, roleId);
+    }
 }

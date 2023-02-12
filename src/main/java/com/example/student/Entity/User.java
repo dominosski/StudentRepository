@@ -1,6 +1,8 @@
 package com.example.student.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import javax.persistence.*;
 import java.util.HashSet;
@@ -27,7 +29,7 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "course_id")}
     )
-    @JsonBackReference
+    @JsonIgnore
     private Set<Course> courseList = new HashSet<>();
 
     @ManyToMany
@@ -36,5 +38,11 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+    @JsonIgnore
     private Set<Role> roles = new HashSet<>();
+
+    public void addRole(Role role){
+        this.getRoles().add(role);
+        role.getUsers().add(this);
+    }
 }
