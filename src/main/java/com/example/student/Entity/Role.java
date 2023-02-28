@@ -1,6 +1,7 @@
 package com.example.student.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,5 +28,6 @@ public class Role {
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "privilege_id")
     )
+    @JsonIgnore
     private Set<Privilege> privileges = new HashSet<>();
 }

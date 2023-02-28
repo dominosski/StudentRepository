@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: create example user
+      author: dkijowski
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  header: first name
+                  name: first_name
+                  type: STRING
+              - column:
+                  header: last name
+                  name: last_name
+                  type: STRING
+              - column:
+                  header: index number
+                  name: index_number
+                  type: STRING
+              - column:
+                  header: year of studies
+                  name: year
+                  type: NUMERIC
+            encoding: UTF-8
+            file: ../preload/example_users.csv
+            quotchar: ''''
+            relativeToChangelogFile: true
+            separator: ","
+            tableName: users
+            usePreparedStatements: true
+  - changeSet:
+      id: add example course
+      author: dkijowski
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  header: name of course
+                  name: course_name
+                  type: STRING
+            encoding: UTF-8
+            file: ../preload/example_course.csv
+            quotchar: ''''
+            relativeToChangelogFile: true
+            separator: ","
+            tableName: course
+            usePreparedStatements: true

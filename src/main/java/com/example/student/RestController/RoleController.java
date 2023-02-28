@@ -6,6 +6,7 @@ import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class RoleController {
     private RoleServiceImplementation roleServiceImplementation;
 

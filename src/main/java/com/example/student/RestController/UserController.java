@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 @AllArgsConstructor
 public class UserController {
-    private UserServiceImplementation userService;
+    private final UserServiceImplementation userService;
 
     @GetMapping("/user")
     public Iterable<User> findAllUsers(){
@@ -18,7 +18,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public User getUserById(@PathVariable long id) throws NotFoundException {
+    public User getUserById(@PathVariable Long id) throws NotFoundException {
         return userService.findById(id);
     }
 
@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @DeleteMapping("/user/{id}")
-    public void deleteUser(@PathVariable long id) throws NotFoundException {
+    public void deleteUser(@PathVariable Long id) throws NotFoundException {
         userService.delete(id);
     }
 

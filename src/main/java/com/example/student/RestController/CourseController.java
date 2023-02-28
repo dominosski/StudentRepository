@@ -4,6 +4,7 @@ import com.example.student.Entity.Course;
 import com.example.student.Entity.User;
 import com.example.student.Service.CourseServiceImplementation;
 import javassist.NotFoundException;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,9 +12,9 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/api/course")
+@AllArgsConstructor
 public class CourseController {
-    @Autowired
-    private CourseServiceImplementation courseServiceImplementation;
+    private final CourseServiceImplementation courseServiceImplementation;
 
     @GetMapping
     public Iterable<Course> findAllCourses(){
