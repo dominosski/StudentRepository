@@ -4,6 +4,7 @@ import com.example.student.Entity.User;
 import com.example.student.RestController.UserController;
 import com.example.student.Service.UserServiceImplementation;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javassist.NotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,5 +89,9 @@ public class UserControllerTest {
     void shouldDeleteUserIfExists() throws Exception{
         mockMvc.perform(delete("/api/user/{id}", user1.getId()))
                 .andExpect(status().isOk());
+    }
+    @Test
+    void shouldThrowExceptionWhenUserDoesNotExist() throws NotFoundException {
+        when(userService.findById(3L)).thenThrow(NotFoundException.class);
     }
 }
