@@ -40,11 +40,11 @@ public class SetupDataLoader implements ApplicationListener {
 
         Role adminRole = roleRepository.findByName("ROLE_ADMIN");
         User user = new User();
-        user.setFirstName("TestName");
-        user.setLastName("TestLastName");
-        user.setIndexNumber("91662");
-        user.setYear(3);
-        userServiceImplementation.save(user);
+//        user.setFirstName("TestName");
+//        user.setLastName("TestLastName");
+//        user.setIndexNumber("91662");
+//        user.setYear(3);
+//        userServiceImplementation.save(user);
 
         try {
             user = userServiceImplementation.findById(1L);

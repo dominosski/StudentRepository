@@ -5,6 +5,8 @@ import com.example.student.Entity.Course;
 import com.example.student.Entity.User;
 import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

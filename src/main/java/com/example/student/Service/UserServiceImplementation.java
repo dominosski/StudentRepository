@@ -1,23 +1,16 @@
 package com.example.student.Service;
 
-import com.example.student.DAO.RoleRepository;
 import com.example.student.DAO.UserRepository;
-import com.example.student.Entity.Role;
-import com.example.student.Entity.User;
+import com.example.student.Entity.*;
 import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor
 public class UserServiceImplementation {
     private final UserRepository userRepository;
-    private final RoleServiceImplementation roleServiceImplementation;
+    private RoleServiceImplementation roleServiceImplementation;
 
     public Iterable<User> findAll() {
         return userRepository.findAll();

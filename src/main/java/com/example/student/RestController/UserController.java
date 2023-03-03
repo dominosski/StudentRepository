@@ -1,44 +1,45 @@
 package com.example.student.RestController;
 
 import com.example.student.Entity.User;
+import com.example.student.Entity.UserCourse;
 import com.example.student.Service.UserServiceImplementation;
 import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 @AllArgsConstructor
 public class UserController {
     private final UserServiceImplementation userService;
 
-    @GetMapping("/user")
+    @GetMapping()
     public Iterable<User> findAllUsers(){
         return userService.findAll();
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) throws NotFoundException {
         return userService.findById(id);
     }
 
-    @PostMapping("/user")
+    @PostMapping()
     public User addUser(@RequestBody User user){
         user.setId(0L);
         return userService.save(user);
     }
 
-    @PutMapping("/user")
+    @PutMapping()
     public User updateUser(@RequestBody User user){
         return userService.save(user);
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) throws NotFoundException {
         userService.delete(id);
     }
 
-    @PutMapping("/user/{userId}/addRole/{roleId}")
+    @PutMapping("/{userId}/addRole/{roleId}")
     public User addRoleToUser(@PathVariable Long userId, @PathVariable Long roleId) throws NotFoundException {
         return userService.addRoleToUser(userId, roleId);
     }
