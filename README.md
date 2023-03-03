@@ -2,7 +2,8 @@ Student Repository is a REST backend Java application to manage students and the
 
 Tech stack:
 - Java v.17
-- SpringBoot
+- SpringBoot / Maven
 - PostgreSQL database
 - Liquibase - database management
 - JUnit5 / Mockito
+- Lombok
