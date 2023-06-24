@@ -21,7 +21,7 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String courseName;
-    @ManyToMany(mappedBy = "courseList", cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "courseList", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<User> userList = new HashSet<>();
 

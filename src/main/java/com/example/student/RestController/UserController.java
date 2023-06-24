@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @PutMapping("/{userId}/addRole/{roleId}")
-    public User addRoleToUser(@PathVariable Long userId, @PathVariable Long roleId) throws NotFoundException {
+    public User addRoleToUser(@PathVariable Long userId, @PathVariable String roleId) throws NotFoundException {
         return userService.addRoleToUser(userId, roleId);
     }
 }

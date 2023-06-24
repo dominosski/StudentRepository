@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserServiceImplementation {
     private final UserRepository userRepository;
-    private RoleServiceImplementation roleServiceImplementation;
 
     public Iterable<User> findAll() {
         return userRepository.findAll();
@@ -22,6 +21,7 @@ public class UserServiceImplementation {
     }
 
     public User save(User user) {
+        user.setRole(Role.USER);
         return userRepository.save(user);
     }
 
@@ -29,11 +29,12 @@ public class UserServiceImplementation {
         userRepository.delete(findById(id));
     }
 
-    public User addRoleToUser(Long userId, Long roleId) throws NotFoundException {
+    public User addRoleToUser(Long userId, String role) throws NotFoundException {
         User user = findById(userId);
-        Role role = roleServiceImplementation.findById(roleId);
-        if(role != null){
-            user.addRole(role);
+        if(role.equals("ADMIN".toUpperCase())){
+            user.setRole(Role.ADMIN);
+        }else{
+            user.setRole(Role.USER);
         }
         return userRepository.save(user);
     }
