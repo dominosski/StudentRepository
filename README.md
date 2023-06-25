@@ -6,4 +6,5 @@ Tech stack:
 - PostgreSQL database
 - Liquibase - database management
 - JUnit5 / Mockito
+- JWT Auth
 - Lombok
