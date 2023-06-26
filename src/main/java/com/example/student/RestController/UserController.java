@@ -5,6 +5,7 @@ import com.example.student.Entity.UserCourse;
 import com.example.student.Service.UserServiceImplementation;
 import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserServiceImplementation userService;
 
-    @GetMapping()
+    @GetMapping("/findAll")
+    @PreAuthorize("hasRole('ADMIN')")
     public Iterable<User> findAllUsers(){
         return userService.findAll();
     }
@@ -35,11 +37,13 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteUser(@PathVariable Long id) throws NotFoundException {
         userService.delete(id);
     }
 
     @PutMapping("/{userId}/addRole/{roleId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public User addRoleToUser(@PathVariable Long userId, @PathVariable String roleId) throws NotFoundException {
         return userService.addRoleToUser(userId, roleId);
     }

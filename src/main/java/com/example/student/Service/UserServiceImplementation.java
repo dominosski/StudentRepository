@@ -21,7 +21,7 @@ public class UserServiceImplementation {
     }
 
     public User save(User user) {
-        user.setRole(Role.USER);
+        user.setRole(Role.ROLE_USER);
         return userRepository.save(user);
     }
 
@@ -32,9 +32,9 @@ public class UserServiceImplementation {
     public User addRoleToUser(Long userId, String role) throws NotFoundException {
         User user = findById(userId);
         if(role.equals("ADMIN".toUpperCase())){
-            user.setRole(Role.ADMIN);
+            user.setRole(Role.ROLE_ADMIN);
         }else{
-            user.setRole(Role.USER);
+            user.setRole(Role.ROLE_USER);
         }
         return userRepository.save(user);
     }

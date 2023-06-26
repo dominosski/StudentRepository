@@ -26,4 +26,14 @@ public class UserCourseService {
 
         return userCourseRepository.save(userCourse);
     }
+
+    public UserCourse deleteGradeFromUser(Long userId, Long courseId, Long gradeId) throws NotFoundException {
+        User user = userServiceImplementation.findById(userId);
+        Course course = courseServiceImplementation.findById(courseId);
+        UserCourseId userCourseId = new UserCourseId(user, course);
+        UserCourse userCourse = userCourseRepository.findById(userCourseId)
+                .orElseThrow(() -> new NotFoundException("UserCourse not found"));
+        userCourse.setGrade(null);
+        return userCourseRepository.save(userCourse);
+    }
 }
