@@ -32,6 +32,7 @@ public class UserController {
     }
 
     @PutMapping()
+    @PreAuthorize("hasRole('ADMIN')")
     public User updateUser(@RequestBody User user){
         return userService.save(user);
     }
